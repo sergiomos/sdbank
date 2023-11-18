@@ -1,7 +1,7 @@
 package sdbank.models;
 
 
-public class Conta {
+public class Conta implements ITarifas{
     protected int contaId, clienteId;
     protected double saldo;
     protected String tipo;
@@ -56,10 +56,12 @@ public class Conta {
         this.tipo = tipo;
     }
     
+    @Override
     public Operacao depositar(double valor){
         return null;
     }
     
+    @Override
      public Operacao debitar(double valor){
         return null;
     }

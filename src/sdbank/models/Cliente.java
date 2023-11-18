@@ -4,12 +4,6 @@
  */
 package sdbank.models;
 
-import java.util.ArrayList;
-
-/**
- *
- * @author sergi
- */
 public class Cliente extends Pessoa {
 
     private int clienteId;
