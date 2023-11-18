@@ -6,22 +6,34 @@ package sdbank.views;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import sdbank.controllers.ClienteController;
+import sdbank.controllers.GerenteController;
 
 
-public class ExibirSaldoClienteFrame extends javax.swing.JFrame {
+public class ExibirSaldoGerenteFrame extends javax.swing.JFrame {
 
     
-    public ExibirSaldoClienteFrame(ClienteFrame view, ClienteController controller) {
+    public ExibirSaldoGerenteFrame(GerenteFrame view, GerenteController controller) {
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.view = view;
         this.controller = controller;
     }
 
+    public JTextField getTxtCPF() {
+        return txtCPF;
+    }
+
+    public void setTxtCPF(JTextField txtCPF) {
+        this.txtCPF = txtCPF;
+    }
+
     public JTable getTableContas() {
         return tableContas;
     }
+    
+    
+
+    
     
     
     @SuppressWarnings("unchecked")
@@ -32,6 +44,9 @@ public class ExibirSaldoClienteFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableContas = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        txtCPF = new javax.swing.JTextField();
+        lbCPF = new javax.swing.JLabel();
+        btnBuscarContas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,22 +80,46 @@ public class ExibirSaldoClienteFrame extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CONTAS");
 
+        lbCPF.setText("CPF");
+
+        btnBuscarContas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscarContas.setText("BUSCAR");
+        btnBuscarContas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarContasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lbLogo, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbCPF)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBuscarContas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbCPF)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarContas, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(lbLogo)
                 .addContainerGap())
         );
@@ -88,14 +127,21 @@ public class ExibirSaldoClienteFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarContasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarContasActionPerformed
+        controller.exibirSaldosCliente();
+    }//GEN-LAST:event_btnBuscarContasActionPerformed
+
   
   
-    private ClienteFrame view;
-    private ClienteController controller;
+    private GerenteFrame view;
+    private GerenteController controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarContas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbLogo;
     private javax.swing.JTable tableContas;
+    private javax.swing.JTextField txtCPF;
     // End of variables declaration//GEN-END:variables
 }

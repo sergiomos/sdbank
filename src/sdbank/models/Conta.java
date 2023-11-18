@@ -2,10 +2,13 @@ package sdbank.models;
 
 
 public class Conta {
-    private int contaId, clienteId;
-    private double saldo;
-    private String tipo;
+    protected int contaId, clienteId;
+    protected double saldo;
+    protected String tipo;
 
+    public Conta() {
+    }
+    
     public Conta(int clienteId, double saldo, String tipo) {
         this.clienteId = clienteId;
         this.saldo = saldo;
@@ -51,6 +54,14 @@ public class Conta {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+    
+    public Operacao depositar(double valor){
+        return null;
+    }
+    
+     public Operacao debitar(double valor){
+        return null;
     }
 
     @Override

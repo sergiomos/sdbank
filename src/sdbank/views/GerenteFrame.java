@@ -20,15 +20,15 @@ public class GerenteFrame extends javax.swing.JFrame {
         cadastrarContaNovoClienteFrame = new CadastrarContaNovoClienteFrame(this, controller);
         cadastrarContaFrame = new CriarContasFrame(this, controller);
         exibirContasFrame = new ExibirContasFrame();
-        exibirSaldoClienteFrame =  new ExibirSaldoClienteFrame(this, controller);
+        exibirSaldoClienteFrame =  new ExibirSaldoGerenteFrame(this, controller);
         
     }
 
-    public ExibirSaldoClienteFrame getExibirSaldoClienteFrame() {
+    public ExibirSaldoGerenteFrame getExibirSaldoClienteFrame() {
         return exibirSaldoClienteFrame;
     }
 
-    public void setExibirSaldoClienteFrame(ExibirSaldoClienteFrame exibirSaldoClienteFrame) {
+    public void setExibirSaldoClienteFrame(ExibirSaldoGerenteFrame exibirSaldoClienteFrame) {
         this.exibirSaldoClienteFrame = exibirSaldoClienteFrame;
     }
 
@@ -230,7 +230,7 @@ public class GerenteFrame extends javax.swing.JFrame {
     private CadastrarContaNovoClienteFrame cadastrarContaNovoClienteFrame;
     private CriarContasFrame cadastrarContaFrame;
     private ExibirContasFrame exibirContasFrame;
-    private ExibirSaldoClienteFrame exibirSaldoClienteFrame;
+    private ExibirSaldoGerenteFrame exibirSaldoClienteFrame;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

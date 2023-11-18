@@ -24,7 +24,7 @@ import sdbank.views.CadastrarContaNovoClienteFrame;
 import sdbank.views.CriarContasFrame;
 import sdbank.views.ExcluirClienteFrame;
 import sdbank.views.ExibirContasFrame;
-import sdbank.views.ExibirSaldoClienteFrame;
+import sdbank.views.ExibirSaldoGerenteFrame;
 import sdbank.views.GerenteFrame;
 
 /**
@@ -160,7 +160,7 @@ public class GerenteController {
     }
 
     public void exibirSaldosCliente() {
-        ExibirSaldoClienteFrame frame = view.getExibirSaldoClienteFrame();
+        ExibirSaldoGerenteFrame frame = view.getExibirSaldoClienteFrame();
         JTextField txtCPF = frame.getTxtCPF();
         
         JTable table = frame.getTableContas();
@@ -169,9 +169,15 @@ public class GerenteController {
         model.setNumRows(0);
         table.setModel(model);
 
-        Optional<Cliente> cliente = clienteDAO.consultarPorCpf(Integer.parseInt(txtCPF.getText()));
+        Cliente cliente = clienteDAO.consultarPorCpf(Integer.parseInt(txtCPF.getText())).get();
+     
+        ArrayList<Conta> contas = new ArrayList<>();
         
-        for(Conta conta : cliente.get().getContas()){
+        contas.add(cliente.getContaCorrente());        
+        contas.add(cliente.getContaPoupanca());
+        contas.add(cliente.getContaSalario());
+        
+        for(Conta conta : contas){
             Object[] row = {conta.getTipo(), conta.getSaldo()};
              model.addRow(row);
         }

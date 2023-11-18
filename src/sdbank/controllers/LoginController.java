@@ -45,7 +45,7 @@ public class LoginController {
 
     public void login() {
         int cpf = Integer.parseInt(view.getTxtCPF().getText());
-        String senha = view.getTxtSenha().getText();
+        String senha = String.valueOf(view.getTxtSenha().getPassword());
 
         Optional<Cliente> cliente = clienteDAO.consultarPorCpfSenha(cpf, senha);
         Optional<Gerente> gerente = gerenteDAO.consultarPorCpfSenha(cpf, senha);
@@ -55,7 +55,7 @@ public class LoginController {
 
         if (!cliente.isEmpty()) {
             view.setVisible(false);
-            new ClienteFrame().setVisible(true);
+            new ClienteFrame(cliente.get()).setVisible(true);
         } else if(!gerente.isEmpty()){
             view.setVisible(false);
             new GerenteFrame().setVisible(true);

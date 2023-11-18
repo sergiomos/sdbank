@@ -7,6 +7,7 @@ package sdbank.views;
 import java.awt.Label;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import sdbank.controllers.LoginController;
 
@@ -72,14 +73,15 @@ public class LoginFrame extends javax.swing.JFrame {
         this.txtCPF = txtCPF;
     }
 
-    public JTextField getTxtSenha() {
+    public JPasswordField getTxtSenha() {
         return txtSenha;
     }
 
-    public void setTxtSenha(JTextField txtSenha) {
+    public void setTxtSenha(JPasswordField txtSenha) {
         this.txtSenha = txtSenha;
     }
-    
+
+
     
 
     /**
@@ -96,8 +98,8 @@ public class LoginFrame extends javax.swing.JFrame {
         lbCPF = new javax.swing.JLabel();
         lbSenha = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
-        txtSenha = new javax.swing.JTextField();
         lbLogo = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +124,12 @@ public class LoginFrame extends javax.swing.JFrame {
         lbLogo.setText("S&D Bank");
         lbLogo.setToolTipText("");
 
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,11 +140,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(lbCPF)
-                            .addComponent(lbSenha)))
+                            .addComponent(lbSenha)
+                            .addComponent(txtSenha)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -153,7 +161,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,6 +177,10 @@ public class LoginFrame extends javax.swing.JFrame {
         controller.login();
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaActionPerformed
+
     private LoginController controller;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -178,6 +190,6 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lbLogo;
     private javax.swing.JLabel lbSenha;
     private javax.swing.JTextField txtCPF;
-    private javax.swing.JTextField txtSenha;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

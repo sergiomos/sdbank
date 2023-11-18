@@ -13,7 +13,9 @@ import java.util.ArrayList;
 public class Cliente extends Pessoa {
 
     private int clienteId;
-    private ArrayList<Conta> contas;
+    private ContaCorrente contaCorrente;
+    private ContaPoupanca contaPoupanca;
+    private ContaSalario contaSalario;
 
     public Cliente(int clienteId, String nome, String senha, int cpf) {
         super(nome, senha, cpf);
@@ -21,22 +23,14 @@ public class Cliente extends Pessoa {
         this.clienteId = clienteId;
     }
 
-    public Cliente(int clienteId, ArrayList<Conta> contas, String nome, String senha, int cpf) {
+    public Cliente(int clienteId, ContaCorrente contaCorrente, ContaPoupanca contaPoupanca, ContaSalario contaSalario, String nome, String senha, int cpf) {
         super(nome, senha, cpf);
         this.clienteId = clienteId;
-        this.contas = contas;
-    }
-
-    public ArrayList<Conta> getContas() {
-        return contas;
-    }
-
-    public void setContas(ArrayList<Conta> contas) {
-        this.contas = contas;
+        this.contaCorrente = contaCorrente;
+        this.contaPoupanca = contaPoupanca;
+        this.contaSalario = contaSalario;
     }
     
-    
-
     public int getClienteId() {
         return clienteId;
     }
@@ -49,6 +43,32 @@ public class Cliente extends Pessoa {
     public Cliente(String nome, String senha, int cpf) {
         super(nome, senha, cpf);
     }
+
+    public ContaCorrente getContaCorrente() {
+        return contaCorrente;
+    }
+
+    public void setContaCorrente(ContaCorrente contaCorrente) {
+        this.contaCorrente = contaCorrente;
+    }
+
+    public ContaPoupanca getContaPoupanca() {
+        return contaPoupanca;
+    }
+
+    public void setContaPoupanca(ContaPoupanca contaPoupanca) {
+        this.contaPoupanca = contaPoupanca;
+    }
+
+    public ContaSalario getContaSalario() {
+        return contaSalario;
+    }
+
+    public void setContaSalario(ContaSalario contaSalario) {
+        this.contaSalario = contaSalario;
+    }
+    
+    
 
     @Override
     public String toString() {

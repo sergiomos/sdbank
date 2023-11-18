@@ -42,6 +42,27 @@ public class ContaDAO {
         }
     }
 
+    public void atualizar(Conta conta) {
+        String sql = "UPDATE contas SET saldo = ? WHERE conta_id = ?";
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setDouble(1, conta.getSaldo());
+            statement.setInt(2, conta.getContaId());
+
+            statement.executeUpdate();
+
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                conta.setContaId(generatedKeys.getInt("conta_id"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     public Optional<Conta> consultarContaCliente(int clienteId) {
         Optional<Conta> conta = Optional.empty();
         String sql = "SELECT * from conta WHERE cliente_id = ?";
@@ -80,7 +101,7 @@ public class ContaDAO {
 
             ResultSet resultado = statement.getResultSet();
 
-            while(resultado.next()) {
+            while (resultado.next()) {
                 contas.add(new Contas(resultado.getString("nome"),
                         resultado.getString("tipo"),
                         resultado.getInt("cpf"),
@@ -93,19 +114,19 @@ public class ContaDAO {
 
         return contas;
     }
-    
+
     public ArrayList<Conta> exibirContasCliente(int cliente_id) {
         ArrayList<Conta> contas = new ArrayList<>();
-        String sql = "SELECT conta_id,tipo,saldo FROM contas WHERE cliente_id = ?" ;
-        
-         try {
+        String sql = "SELECT conta_id,tipo,saldo FROM contas WHERE cliente_id = ?";
+
+        try {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, cliente_id);
             statement.execute();
 
             ResultSet resultado = statement.getResultSet();
 
-            while(resultado.next()) {
+            while (resultado.next()) {
                 contas.add(new Conta(resultado.getInt("conta_id"),
                         cliente_id,
                         resultado.getDouble("saldo"),

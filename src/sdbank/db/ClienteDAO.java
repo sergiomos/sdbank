@@ -6,6 +6,11 @@ import sdbank.models.Cliente;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import sdbank.models.Conta;
+import sdbank.models.ContaCorrente;
+import sdbank.models.ContaPoupanca;
+import sdbank.models.ContaSalario;
 
 public class ClienteDAO implements IDAO<Cliente> {
 
@@ -72,8 +77,27 @@ public class ClienteDAO implements IDAO<Cliente> {
             ResultSet resultado = statement.getResultSet();
 
             if (resultado.next()) {
+                int clienteId = resultado.getInt(1);
+                 ArrayList<Conta> contas = contaDAO.exibirContasCliente(clienteId);
+                ContaCorrente corrente = null;
+                ContaSalario salario = null;
+                ContaPoupanca poupanca = null;
+                
+                 for(Conta conta :contas) {
+                    switch (conta.getTipo()) {
+                        case "Conta Corrente" -> corrente = new ContaCorrente(conta.getContaId(), conta.getClienteId(), conta.getSaldo());
+                        case "Conta Poupança" -> poupanca = new ContaPoupanca(conta.getContaId(), conta.getClienteId(), conta.getSaldo());
+                        case "Conta Salário" -> salario = new ContaSalario(conta.getContaId(), conta.getClienteId(), conta.getSaldo());
+                        default -> {
+                        }
+                    }
+                }
+                
                 cliente = Optional.ofNullable(new Cliente(
-                        resultado.getInt("cliente_id"),
+                        clienteId,
+                        corrente,
+                        poupanca,
+                        salario,
                         resultado.getString("nome"),
                         resultado.getString("senha"),
                         resultado.getInt("cpf")));
@@ -100,10 +124,27 @@ public class ClienteDAO implements IDAO<Cliente> {
 
             if (resultado.next()) {
                 int clienteId = resultado.getInt(1);
+                
+                ArrayList<Conta> contas = contaDAO.exibirContasCliente(clienteId);
+                ContaCorrente corrente = null;
+                ContaSalario salario = null;
+                ContaPoupanca poupanca = null;
+                
+                for(Conta conta :contas) {
+                    switch (conta.getTipo()) {
+                        case "Conta Corrente" -> corrente = new ContaCorrente(conta.getContaId(), conta.getClienteId(), conta.getSaldo());
+                        case "Conta Poupança" -> poupanca = new ContaPoupanca(conta.getContaId(), conta.getClienteId(), conta.getSaldo());
+                        case "Conta Salário" -> salario = new ContaSalario(conta.getContaId(), conta.getClienteId(), conta.getSaldo());
+                        default -> {
+                        }
+                    }
+                }
 
                 cliente = Optional.ofNullable(new Cliente(
                         clienteId,
-                        contaDAO.exibirContasCliente(clienteId),
+                        corrente,
+                        poupanca,
+                        salario,
                         resultado.getString("nome"),
                         resultado.getString("senha"),
                         resultado.getInt("cpf")));
